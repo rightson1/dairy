@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.fx-center {
+  @apply flex items-center justify-center;
+}
+.fxc {
+  @apply flex items-center justify-center;
+}
+.fx-start {
+  @apply flex items-center justify-start;
+}
+.fx-col {
+  @apply flex flex-col;
+}
+.fb {
+  @apply flex flex-col md:flex-row md:justify-between gap-10;
+}
+.flex-col-start {
+  @apply flex flex-col items-start;
+}
+@layer utilities {
+  .fx-col-c {
+    @apply flex flex-col items-center justify-center;
+  }
+}
+.fx-b {
+  @apply flex  justify-between;
+}
+
+.mfc {
+  @apply flex flex-col md:flex-row;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.6) 0%,
+      rgba(0, 0, 0, 0.6) 100%
+    ),
+    radial-gradient(
+      176.12% 80.05% at 73.12% 65.93%,
+      rgba(0, 111, 238, 0.5) 20.18%,
+      rgba(0, 0, 0, 0.25) 66.67%,
+      rgba(0, 0, 0, 0.5) 100%
+    );
+  background-size: cover;
+  z-index: -1;
+}
+.main-h {
+  height: calc(100vh - 64px);
+}
+.h1 {
+  @apply text-4xl font-bold;
+}
+.h2 {
+  @apply text-2xl font-bold;
+}
+.h3 {
+  @apply text-xl font-bold;
+}
+.h4 {
+  @apply text-lg font-bold;
+}
+.h5 {
+  @apply text-base font-bold;
+}
+.h6 {
+  @apply text-sm font-bold;
+}
+.p {
+  @apply text-base;
+}
+.grad-text {
+  background: linear-gradient(
+    90deg,
+    hsla(270, 59%, 58%, 1) 0%,
+    hsla(283, 93%, 61%, 1) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text; /* For Safari/Chrome */
+  color: transparent; /* Set text color to transparent to reveal the gradient */
+}
+.mtc {
+  @apply mb:text-center;
+}
+.tc {
+  @apply text-center;
+}
+
+.pxs {
+  @apply px-8 mb:px-4;
+}
+.blured {
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(1.200000762939453px);
+}
+.bb {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+.bt {
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
