@@ -80,7 +80,7 @@ export const SellerAuthProvider = ({
   }) => {
     await signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        window.location.href = "/";
+        window.location.href = "/seller";
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -92,7 +92,7 @@ export const SellerAuthProvider = ({
     await auth.signOut();
     localStorage.removeItem("seller");
 
-    router.push("/login");
+    router.push("/seller/login");
   };
 
   return (

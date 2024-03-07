@@ -21,7 +21,7 @@ const Sidebar = () => {
           variant="flat"
           className="w-full bg-transparent justify-start"
           as={Link}
-          href="/"
+          href="/seller"
         >
           Home
         </Button>
@@ -30,7 +30,7 @@ const Sidebar = () => {
           variant="flat"
           className="w-full bg-transparent justify-start"
           as={Link}
-          href="/products"
+          href="/seller/products"
         >
           Products
         </Button>
@@ -40,7 +40,7 @@ const Sidebar = () => {
           variant="flat"
           className="w-full bg-transparent justify-start"
           as={Link}
-          href="/settings"
+          href="/seller/settings"
         >
           Settings
         </Button>

@@ -48,7 +48,7 @@ const Create_Seller = () => {
     customToast({
       func: createAdmin,
       sfunc: () => {
-        window.location.href = "/";
+        window.location.href = "/seller";
       },
       efunc: () => {
         console.log("error");

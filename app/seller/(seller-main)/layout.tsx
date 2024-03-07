@@ -11,7 +11,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   useEffect(() => {
     if (!admin) {
-      router.push("/login");
+      router.push("/seller/login");
     }
   }, [admin, router]);
 
