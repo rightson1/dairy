@@ -171,6 +171,7 @@ export const getPriceLabel = (slug: string) => {
 export const getProductPrice = (price: string | number, slug: string) => {
   return price + " " + getPriceLabel(slug);
 };
+//comment
 export const eMongo = (err: any) => {
   return err._message;
 };
