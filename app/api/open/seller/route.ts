@@ -1,20 +1,20 @@
 import Seller from "@/models/Seller";
 import { conn } from "@/models/mongo_db_connection";
 import { NextRequest, NextResponse } from "next/server";
-
+export const dynamic = "force-dynamic";
 export async function GET(req: NextRequest) {
   try {
     await conn();
-    const admin = req.nextUrl.searchParams.get("uid");
+    const uid = req.nextUrl.searchParams.get("uid");
     const email = req.nextUrl.searchParams.get("email");
 
-    if (!admin && !email) {
+    if (!uid && !email) {
       return NextResponse.json({
-        message: "Who are you?",
+        message: `Please provide a valid email or uid`,
         success: false,
       });
     }
-    const query = admin ? { uid: admin } : { email };
+    const query = uid ? { uid: uid } : { email };
 
     const adminRaw = await Seller.findOne(query);
     if (!adminRaw) {

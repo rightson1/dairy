@@ -42,6 +42,7 @@ export async function conn() {
         return mongoose;
       })
       .catch((error) => {
+        console.log(error);
         console.error("❌ Connection to database failed");
         throw error;
       });

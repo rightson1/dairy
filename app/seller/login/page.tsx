@@ -14,14 +14,12 @@ const LOGIN = () => {
     e.preventDefault();
     const email = e.currentTarget.email.value.trim() as string;
     const password = e.currentTarget.password.value.trim() as string;
-    console.log(email, password);
     customToast({
       func: async () => {
         await signIn({ email, password }).catch((e) => {
           const message = e.message;
           throw new Error(message);
         });
-        await axios.get(`/api/open/seller?email=${email}`).then(eCheck);
       },
       suc: "Welcome Back",
     });

@@ -79,8 +79,9 @@ export const SellerAuthProvider = ({
     password: string;
   }) => {
     await signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        window.location.href = "/seller";
+      .then(async (userCredential) => {
+        await axios.get(`/api/open/seller?email=${email}`).then(eCheck);
+        router.push("/seller");
       })
       .catch((error) => {
         const errorMessage = error.message;
