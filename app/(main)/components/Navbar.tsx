@@ -178,6 +178,11 @@ export function Nav() {
               </Button>
             )}
             {fUser && (
+              <Button as={Link} href="/seller" color="primary">
+                Sell
+              </Button>
+            )}
+            {fUser && (
               <Button onPress={logout} color="primary">
                 Logout
               </Button>

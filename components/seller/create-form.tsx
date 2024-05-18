@@ -97,7 +97,7 @@ const Create_Seller = () => {
         <CardFooter className="fx-b">
           <p className="text-sm text-muted-foreground">
             Already have an account?{" "}
-            <Link className="underline" href="/login">
+            <Link className="underline" href="/seller/login">
               Login
             </Link>
           </p>

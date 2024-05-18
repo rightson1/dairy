@@ -10,6 +10,7 @@ import Image from "next/image";
 import { useGetProducts } from "@/utils/hooks/useProduct";
 import { getPriceLabel } from "@/components/helpers/functions";
 import Link from "next/link";
+import MessageButton from "@/components/chat/MessageButton";
 const Page = ({
   params: { farmer: _id },
 }: {
@@ -50,15 +51,7 @@ const Page = ({
                   </a>
                   <h6 className="h6">Call</h6>
                 </div>
-                <div className="fx-col items-center gap-2">
-                  <a
-                    href={`
-                  mailto:${farmer.email}?subject=Inquiry about ${farmer.name}`}
-                  >
-                    <Mail className="h-5" />
-                  </a>
-                  <h6 className="h6">Mail</h6>
-                </div>
+                <MessageButton farmerId={farmer._id} />
                 <div className="fx-col items-center gap-2">
                   <a
                     href={`

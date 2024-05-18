@@ -40,7 +40,7 @@ const Profile = () => {
         <h1 className="h1-style text-default-500">{user.displayName}</h1>
         <h5 className="h5-style text-default-500 fx-center gap-2 ">
           <Mail size={25} />
-          {user.email || "No School Added"}
+          {user.email || "Loading..."}
         </h5>
         <div className="flex gap-1">
           <Button

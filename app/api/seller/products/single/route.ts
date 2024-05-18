@@ -5,9 +5,8 @@ import { IProductUpdate } from "@/types";
 import { NextRequest, NextResponse } from "next/server";
 export const dynamic = "force-dynamic";
 export async function GET(req: NextRequest) {
-  await conn();
-
   try {
+    await conn();
     const _id = req.nextUrl.searchParams.get("_id");
     Seller;
     const product = await Product.findById(_id).populate("business");
@@ -22,8 +21,8 @@ export async function GET(req: NextRequest) {
 }
 //edit product
 export async function PUT(req: NextRequest) {
-  await conn();
   try {
+    await conn();
     const productData: IProductUpdate = await req.json();
 
     const product = await Product.findByIdAndUpdate(
@@ -43,8 +42,8 @@ export async function PUT(req: NextRequest) {
   }
 }
 export async function DELETE(req: NextRequest) {
-  await conn();
   try {
+    await conn();
     const productId = req.nextUrl.searchParams.get("_id");
     const product = await Product.findByIdAndDelete(productId);
     return NextResponse.json({

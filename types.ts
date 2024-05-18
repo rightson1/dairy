@@ -89,3 +89,19 @@ export interface IOrderFetched extends IOrder, IFetched {
   product: IProductFetched;
   business: ISellerFetched;
 }
+export interface TConversationCreate {
+  members: string[];
+}
+export interface TConversation {
+  members: string[];
+  _id: string;
+  sentBy: IUserFetched | ISellerFetched;
+  lastMessage: string;
+}
+export interface IMessage {
+  text: string;
+  sender: string;
+  receiver: string;
+  conversationId: string;
+}
+export interface IMessageFetched extends IMessage, IFetched {}

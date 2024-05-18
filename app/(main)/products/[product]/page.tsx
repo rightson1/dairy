@@ -55,7 +55,6 @@ const Page = ({
                   if (!loggedIn) {
                     modalStates.onOpen();
                   } else {
-                    console.log("Ordering");
                     router.push(`/checkout/${product._id}`);
                   }
                 }}

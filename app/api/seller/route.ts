@@ -5,8 +5,8 @@ import { NextRequest, NextResponse } from "next/server";
 export const dynamic = "force-dynamic";
 
 export async function POST(req: NextRequest) {
-  await conn();
   try {
+    await conn();
     const seller: ISeller = await req.json();
     seller.slug = seller.name.toLowerCase().replace(/\s/g, "-");
     const newSeller = await Business.create(seller);
@@ -24,21 +24,28 @@ export async function POST(req: NextRequest) {
   }
 }
 export async function GET(req: NextRequest) {
-  await conn();
-  //get seller by _id
-  const _id = req.nextUrl.searchParams.get("_id");
-  if (_id) {
-    const seller = await Business.findById(_id);
-    return NextResponse.json(seller);
-  } else {
-    const sellers = await Business.find();
-    return NextResponse.json(sellers);
+  try {
+    await conn();
+    //get seller by _id
+    const _id = req.nextUrl.searchParams.get("_id");
+    if (_id) {
+      const seller = await Business.findById(_id);
+      return NextResponse.json(seller);
+    } else {
+      const sellers = await Business.find();
+      return NextResponse.json(sellers);
+    }
+  } catch (e) {
+    return NextResponse.json({
+      message: "Error fetching sellers",
+      success: false,
+    });
   }
 }
 //edit
 export async function PUT(req: NextRequest) {
-  await conn();
   try {
+    await conn();
     const seller: ISellerFetched = await req.json();
     console.log(seller);
     const newSeller = await Business.findByIdAndUpdate(seller._id, seller, {

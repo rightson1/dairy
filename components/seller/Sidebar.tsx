@@ -1,6 +1,13 @@
 import React from "react";
 import { Avatar, Button } from "@nextui-org/react";
-import { Home, LogOut, Settings, ShoppingCart } from "lucide-react";
+import {
+  Home,
+  LogOut,
+  Mail,
+  MailCheck,
+  Settings,
+  ShoppingCart,
+} from "lucide-react";
 import Link from "next/link";
 import { useSellerAuth } from "@/utils/sellerAuth";
 
@@ -17,7 +24,7 @@ const Sidebar = () => {
       </div>
       <div className="fx-col">
         <Button
-          startContent={<Home />}
+          startContent={<Mail />}
           variant="flat"
           className="w-full bg-transparent justify-start"
           as={Link}
@@ -36,6 +43,16 @@ const Sidebar = () => {
         </Button>
 
         <Button
+          startContent={<MailCheck />}
+          variant="flat"
+          className="w-full bg-transparent justify-start"
+          as={Link}
+          href="/seller/chat"
+        >
+          Chat
+        </Button>
+
+        <Button
           startContent={<Settings />}
           variant="flat"
           className="w-full bg-transparent justify-start"
@@ -44,6 +61,16 @@ const Sidebar = () => {
         >
           Settings
         </Button>
+        <Button
+          startContent={<ShoppingCart />}
+          variant="flat"
+          className="w-full bg-transparent justify-start"
+          as={Link}
+          href="/"
+        >
+          Storefronts
+        </Button>
+        {/*  */}
         <Button
           variant="flat"
           startContent={<LogOut />}

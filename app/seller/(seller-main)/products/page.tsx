@@ -8,7 +8,11 @@ const Products = () => {
     <div className="p-4 fx-col gap-5">
       <div className="fx-b">
         <h1 className="text-2xl">Products</h1>
-        <Button as={Link} href="/products/create" className="bg-content1">
+        <Button
+          as={Link}
+          href="/seller/products/create"
+          className="bg-content1"
+        >
           Add Product
         </Button>
       </div>

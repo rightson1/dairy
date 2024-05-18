@@ -11,7 +11,7 @@ import { IFUser, IUser, IUserFetched } from "@/types";
 import axios from "axios";
 
 import { modal, useDisclosure } from "@nextui-org/react";
-import { useCustomToast } from "@/components/helpers/functions";
+import { eCheck, useCustomToast } from "@/components/helpers/functions";
 const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
@@ -23,13 +23,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const modalStates = useDisclosure();
   const [user, setUser] = useState<IUser | null>(null);
   const router = useRouter();
-  useEffect(() => {
-    if (fUser && (fUser as IFUser)?.uid) {
-      setLoggedIn(true);
-    } else {
-      setLoggedIn(false);
-    }
-  }, [fUser]);
+
   useEffect(() => {
     if (user) {
       if (user.admin) {
@@ -40,23 +34,32 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   }, [user]);
   const fetchUser = async (uid: string) =>
-    await axios.get(`/api/users?uid=${uid}`).then((res) => {
-      const user = res.data;
-      if (user) {
-        setUser(res.data);
-        localStorage.setItem("user", JSON.stringify(user));
-        setFUser({
-          uid: user.uid,
-          email: user.email,
-          displayName: user.displayName,
-          photoURL: user.photoURL,
-        });
-      } else {
+    await axios
+      .get(`/api/users?uid=${uid}`)
+      .then(eCheck)
+      .then((user) => {
+        console.log(user);
+        if (user) {
+          setUser(user);
+          localStorage.setItem("user", JSON.stringify(user));
+          setLoggedIn(true);
+          setFUser({
+            uid: user.uid,
+            email: user.email,
+            displayName: user.displayName,
+            photoURL: user.photoURL,
+          });
+        } else {
+          localStorage.removeItem("user");
+          setUser(null);
+          setFUser(null);
+        }
+      })
+      .catch((err) => {
         localStorage.removeItem("user");
         setUser(null);
         setFUser(null);
-      }
-    });
+      });
 
   useEffect(() => {
     const userString =
@@ -71,13 +74,10 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             displayName: user.displayName,
             photoURL: user.photoURL,
           });
+          setLoggedIn(true);
           setUser(localUser);
         } else {
-          fetchUser(user.uid).catch((err) => {
-            if (err.response.status === 404) {
-              console.log("User does not exist");
-            }
-          });
+          fetchUser(user.uid);
         }
       } else {
         setFUser(null);

@@ -33,7 +33,7 @@ const LOGIN = () => {
           <h1 className="text-3xl font-bold text-primary">Login</h1>
           <p className="text-sm text-muted-foreground">
             Welcome Back Dont have an account?{" "}
-            <Link href="/register" className="undeline">
+            <Link href="/seller/register" className="undeline">
               Register
             </Link>
           </p>

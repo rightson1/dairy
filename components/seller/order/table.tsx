@@ -392,7 +392,7 @@ export function OrderTable() {
           </TableColumn>
         )}
       </TableHeader>
-      <TableBody emptyContent={"No users found"} items={sortedItems}>
+      <TableBody emptyContent={"No orders found"} items={sortedItems}>
         {(item) => {
           return (
             <TableRow key={item._id}>

@@ -3,17 +3,17 @@ import { conn } from "@/models/mongo_db_connection";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
-  await conn();
-  const admin = req.nextUrl.searchParams.get("uid");
-  const email = req.nextUrl.searchParams.get("email");
-
-  if (!admin && !email) {
-    return NextResponse.json({
-      message: "Who are you?",
-      success: false,
-    });
-  }
   try {
+    await conn();
+    const admin = req.nextUrl.searchParams.get("uid");
+    const email = req.nextUrl.searchParams.get("email");
+
+    if (!admin && !email) {
+      return NextResponse.json({
+        message: "Who are you?",
+        success: false,
+      });
+    }
     const query = admin ? { uid: admin } : { email };
 
     const adminRaw = await Seller.findOne(query);

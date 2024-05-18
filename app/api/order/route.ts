@@ -1,12 +1,14 @@
 import { eMongo } from "@/components/helpers/functions";
+import { conn } from "@/models/mongo_db_connection";
 import Order from "@/models/Order";
 import { NextRequest, NextResponse } from "next/server";
 export const dynamic = "force-dynamic";
 export async function POST(req: NextRequest, res: NextResponse) {
-  const body = await req.json();
-  console.log(body);
-  const order = new Order(body);
   try {
+    await conn();
+    const body = await req.json();
+
+    const order = new Order(body);
     await order.save();
     return NextResponse.json({ message: "Order placed successfully" });
   } catch (e: any) {

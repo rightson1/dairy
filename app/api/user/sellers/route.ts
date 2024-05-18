@@ -5,10 +5,10 @@ import { NextRequest, NextResponse } from "next/server";
 export const dynamic = "force-dynamic";
 
 export async function GET(req: NextRequest) {
-  await conn();
-  const category = req.nextUrl.searchParams.get("category");
-
   try {
+    await conn();
+    const category = req.nextUrl.searchParams.get("category");
+
     const businesses_raw = await Product.aggregate([
       { $match: { category: category } },
       { $group: { _id: "$business" } },
